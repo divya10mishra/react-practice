@@ -8,7 +8,7 @@ import ComponentA from "./concepts/StateUplift/ComponentA";
 import ClassComponentA from "./concepts/StateUpliftClassComponent/ComponentA";
 import Pagination from "./features/Pagination/Pagination.js";
 import UseRef from './concepts/UseRef'
-import Accordian from "./features/Accordian/Accordian.js";
+import Accordian from "./features/Accordian/Accordion.js";
 
 function App() {
   return (
