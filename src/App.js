@@ -8,6 +8,7 @@ import ComponentA from "./concepts/StateUplift/ComponentA";
 import ClassComponentA from "./concepts/StateUpliftClassComponent/ComponentA";
 import Pagination from "./features/Pagination/Pagination.js";
 import UseRef from './concepts/UseRef'
+import Accordian from "./features/Accordian/Accordian.js";
 
 function App() {
   return (
@@ -52,7 +53,12 @@ export const appRouter = createBrowserRouter([
       {
         path:'/useRef',
         element:<UseRef/>
-      }
+      },
+      {
+        path:'/accordian',
+        element:<Accordian/>,
+        errorElement:<>Error fallback page</>
+      },
       
     ],
   },
