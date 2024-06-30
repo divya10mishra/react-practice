@@ -1,0 +1,20 @@
+POST  http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username":"divya",
+    "password":"mishra"
+}
+
+###
+
+POST http://localhost:5000/registration
+Content-Type: application/json
+
+{
+"RegDetails":{
+    "username":"divya",
+    "password":"mishra",
+    "email":"divya.mishra@gmail.com"
+}
+}
