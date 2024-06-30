@@ -13,8 +13,8 @@ Content-Type: application/json
 
 {
 "RegDetails":{
-    "username":"divya",
-    "password":"mishra",
-    "email":"divya.mishra@gmail.com"
+    "username":"test",
+    "password":"test",
+    "email":"test.mishra@gmail.com"
 }
 }
