@@ -1,28 +1,31 @@
 import "./App.css";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Header from "./features/Header/Header"
-import Counter from './features/counter/Counter'
-
+import Header from "./features/Header/Header";
+import Calculator from "./features/calculator/Calculator";
+import { Provider } from "react-redux";
+import store from "./Store/store";
 
 function App() {
   return (
-    <div className="App">
-      <Header/> 
-      <Outlet/>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 }
 
 export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children: [
       {
-        path:'/counter',
-        element:<Counter/>,
-        errorElement:<>Error fallback page</>
-      }
+        path: "/calculator",
+        element: <Calculator />,
+        errorElement: <>Error fallback page</>,
+      },
     ],
   },
 ]);
