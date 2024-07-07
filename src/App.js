@@ -1,17 +1,18 @@
 import "./App.css";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Header from "./features/Header/Header"
-import UseMemoEx from './concepts/useMemo/index'
-import UseCallbackEx from './concepts/useCallback/parent';
+import Header from "./features/Header/Header";
+import UseMemoEx from "./concepts/useMemo/index";
+import UseCallbackEx from "./concepts/useCallback/parent";
 import ComponentA from "./concepts/StateUplift/ComponentA";
 import ClassComponentA from "./concepts/StateUpliftClassComponent/ComponentA";
-import UseRef from './concepts/UseRef'
+import UseRef from "./concepts/UseRef";
+import MultiForm from "./features/forms/index";
 
 function App() {
   return (
     <div className="App">
-      <Header/> 
-      <Outlet/>
+      <Header />
+      <Outlet />
     </div>
   );
 }
@@ -19,30 +20,32 @@ function App() {
 export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children: [
-   
       {
-        path:'/usememo',
-        element: <UseMemoEx/>
+        path: "/usememo",
+        element: <UseMemoEx />,
       },
       {
-        path:'/usecallback',
-        element: <UseCallbackEx/>
+        path: "/usecallback",
+        element: <UseCallbackEx />,
       },
       {
-        path:'/stateUplift',
-        element:<ComponentA/>
+        path: "/stateUplift",
+        element: <ComponentA />,
       },
       {
-        path:'/stateUpliftClass',
-        element:<ClassComponentA/>
+        path: "/stateUpliftClass",
+        element: <ClassComponentA />,
       },
       {
-        path:'/useRef',
-        element:<UseRef/>
-      }
-      
+        path: "/useRef",
+        element: <UseRef />,
+      },
+      {
+        path: "/multiForm",
+        element: <MultiForm />,
+      },
     ],
   },
 ]);
