@@ -42,7 +42,7 @@ app.post("/registration", async (req, res) => {
     console.error(err);
   }
 });
-app.get("/posts", authenticateToken, async (req, res) => {
+app.get("/posts", authorizationToken, async (req, res) => {
   try {
     const payload = req.authUser.username;
     console.log(payload, "before");
@@ -82,7 +82,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-function authenticateToken(req, res, next) {
+function authorizationToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.status(401);
