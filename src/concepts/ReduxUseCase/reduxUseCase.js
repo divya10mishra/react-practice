@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { reducerName } from "./profileSlice";
+import { fetchUser, nameReducerFunc } from "./profileSlice";
 
-const ReduxUseCase = () => {
+function ReduxUseCase() {
   const dispatch = useDispatch();
-  let listOfNames = useSelector((state) => state.storeSliceKey.stateName);
-  console.log(listOfNames, "profiles in comp");
-  useEffect(() => {
-    async function getApi() {
-      let response = await fetch("https://jsonplaceholder.typicode.com/users");
-      let result = await response.json();
-      dispatch(reducerName(result));
-    }
+  const names = useSelector((state) => state.storeSliceKey.namesState);
+  console.log(names, "names from reducer");
 
-    getApi();
+  useEffect(() => {
+    dispatch(fetchUser());
   }, []);
-  return <> </>;
-};
+
+  return (
+    <button onClick={() => dispatch(nameReducerFunc(names))}>
+      reduxUseCase
+    </button>
+  );
+}
 
 export default ReduxUseCase;

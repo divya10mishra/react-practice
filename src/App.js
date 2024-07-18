@@ -9,6 +9,7 @@ import UseRef from "./concepts/UseRef";
 import ReduxUseCase from "./concepts/ReduxUseCase/reduxUseCase";
 import store from "../src/store/store";
 import { Provider } from "react-redux";
+import Timer from "./features/Header/InterviewTimer";
 
 function App() {
   return (
@@ -49,6 +50,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/reduxuse",
         element: <ReduxUseCase />,
+      },
+      {
+        path: "/timer01",
+        element: <Timer />,
       },
     ],
   },
