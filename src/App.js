@@ -10,6 +10,7 @@ import ReduxUseCase from "./concepts/ReduxUseCase/reduxUseCase";
 import store from "../src/store/store";
 import { Provider } from "react-redux";
 import Timer from "./features/Header/InterviewTimer";
+import InputTime from './features/inputwithtimer/InputTime'
 
 function App() {
   return (
@@ -55,6 +56,10 @@ export const appRouter = createBrowserRouter([
         path: "/timer01",
         element: <Timer />,
       },
+      {
+        path:'/inputtime',
+        element:<InputTime/>
+      }
     ],
   },
 ]);
