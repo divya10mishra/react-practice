@@ -1,30 +1,50 @@
-import { useState } from "react";
-import SubComment from "./CommentList";
+import React, { useState } from "react";
 
-const Comments = () => {
-  const [comment, setComment] = useState("");
-  const [name, setName] = useState("");
+function Comments({ comment, handleReply }) {
+  const [reply, setReply] = useState("");
   const [flag, setFlag] = useState(false);
 
-  const postComment = () => {
-    setFlag(true);
+  const addPost = (id) => {
+    if (reply.trim() === "") {
+      return; // Prevent empty replies
+    }
+    const newReply = {
+      id: Date.now().toString(),
+      comment: reply,
+    };
+    handleReply(newReply, id);
+    setFlag(false);
+    setReply("");
   };
-  const addReply = () => {};
-  const deleteComment = () => {};
   return (
     <>
-      <input
-        placeholder="comment"
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <input placeholder="name" onChange={(e) => setName(e.target.value)} />
-      <button onClick={postComment}>Post</button>
-      <div>
-        <button onClick={addReply}>Reply</button>
-        <button onClick={deleteComment}>Delete</button>
-      </div>
+      {comment && (
+        <div key={comment.id} style={{ margin: "3%" }}>
+          <div style={{ border: "1px solid black", width: "10%" }}>
+            {comment.comment}
+          </div>
+          <div style={{ border: "1px solid black", width: "10%" }}>
+            {flag && (
+              <div>
+                <input
+                  placeholder="comment"
+                  type="text"
+                  value={reply}
+                  onChange={(e) => setReply(e.target.value)}
+                />
+                <button onClick={() => addPost(comment.id)}>Post</button>
+              </div>
+            )}
+          </div>
+          <button onClick={() => setFlag(true)}>Reply</button>
+          <button>Delete</button>
+          {comment?.replies?.map((item) => (
+            <Comments comment={item} handleReply={handleReply} key={item.id} />
+          ))}
+        </div>
+      )}
     </>
   );
-};
+}
 
 export default Comments;

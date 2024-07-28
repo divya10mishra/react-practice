@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Comments from "./Comments";
 
 function CommentIndex() {
   let ds = {
@@ -6,23 +7,23 @@ function CommentIndex() {
     comment: "hello",
     replies: [
       {
-        id: "1",
-        comment: "hello",
+        id: "9",
+        comment: "hello world",
         replies: [
           {
             id: "5",
-            comment: "hello",
+            comment: "hello india",
             replies: [
               {
                 id: "6",
-                comment: "hello",
+                comment: "hello raebareli",
                 replies: [],
               },
             ],
           },
           {
             id: "3",
-            comment: "hello",
+            comment: "hello prabhu town",
             replies: [],
           },
         ],
@@ -33,27 +34,42 @@ function CommentIndex() {
       },
     ],
   };
-  const [comment, setComment] = useState(null);
-  const postComment = () => {
-    setComment(ds);
+  const [comment, setComment] = useState(ds);
+
+  const handleReply = (newReply, newId) => {
+    console.log(newReply, newId, "replies");
+    let newComment = replyRecursively(comment, newReply, newId);
+    setComment(newComment);
   };
+
+  function replyRecursively(currentComment, newReply, newId) {
+    if (currentComment.id === newId) {
+      return {
+        ...currentComment,
+        replies: [...currentComment.replies, newReply],
+      };
+    } else {
+      return {
+        ...currentComment,
+        replies: [
+          ...currentComment.replies.map((item) =>
+            replyRecursively(item, newReply, newId)
+          ),
+        ],
+      };
+    }
+  }
+  console.log(comment, "comment");
   return (
-    <div>
-      <input placeholder="comment" />
-      <button onClick={postComment}>Post</button>
-      <div>
-        <button>Reply</button>
-        <button>Delete</button>
-      </div>
-      <div>
-        {comment &&
-          Object.entries(comment).map(([key, value]) => {
-            if (key == "comment") {
-              return <div style={{ border: "1px solid black" }}>value</div>;
-            }
-          })}
-      </div>
-    </div>
+    <>
+      {comment && (
+        <Comments
+          comment={comment}
+          handleReply={handleReply}
+          key={comment.id}
+        />
+      )}
+    </>
   );
 }
 
