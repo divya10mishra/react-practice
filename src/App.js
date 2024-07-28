@@ -10,7 +10,9 @@ import ReduxUseCase from "./concepts/ReduxUseCase/reduxUseCase";
 import store from "../src/store/store";
 import { Provider } from "react-redux";
 import Timer from "./features/Header/InterviewTimer";
-import InputTime from './features/inputwithtimer/InputTime'
+import InputTime from "./features/inputwithtimer/InputTime";
+import Counter from "./features/Counter";
+import Comments from "./features/commenting-system/CommentIndex";
 
 function App() {
   return (
@@ -57,9 +59,17 @@ export const appRouter = createBrowserRouter([
         element: <Timer />,
       },
       {
-        path:'/inputtime',
-        element:<InputTime/>
-      }
+        path: "/inputtime",
+        element: <InputTime />,
+      },
+      {
+        path: "counter",
+        element: <Counter />,
+      },
+      {
+        path: "comments",
+        element: <Comments />,
+      },
     ],
   },
 ]);
