@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Comments({ comment, handleReply }) {
+function Comments({ comment, handleReply, handleDelete }) {
   const [reply, setReply] = useState("");
   const [flag, setFlag] = useState(false);
 
@@ -11,10 +11,15 @@ function Comments({ comment, handleReply }) {
     const newReply = {
       id: Date.now().toString(),
       comment: reply,
+      replies: [],
     };
     handleReply(newReply, id);
     setFlag(false);
     setReply("");
+  };
+
+  const deleteComment = (id) => {
+    handleDelete(id);
   };
   return (
     <>
@@ -37,9 +42,14 @@ function Comments({ comment, handleReply }) {
             )}
           </div>
           <button onClick={() => setFlag(true)}>Reply</button>
-          <button>Delete</button>
+          <button onClick={() => deleteComment(comment.id)}>Delete</button>
           {comment?.replies?.map((item) => (
-            <Comments comment={item} handleReply={handleReply} key={item.id} />
+            <Comments
+              comment={item}
+              handleReply={handleReply}
+              key={item.id}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       )}

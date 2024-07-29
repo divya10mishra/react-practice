@@ -24,17 +24,16 @@ function CommentIndex() {
           {
             id: "3",
             comment: "hello prabhu town",
-            replies: [],
           },
         ],
       },
       {
         id: "4",
-        replies: [],
+        comment: "hello shello",
       },
     ],
   };
-  const [comment, setComment] = useState(ds);
+  const [comment, setComment] = useState({ id: "1", comment: "", replies: [] });
 
   const handleReply = (newReply, newId) => {
     console.log(newReply, newId, "replies");
@@ -46,18 +45,37 @@ function CommentIndex() {
     if (currentComment.id === newId) {
       return {
         ...currentComment,
-        replies: [...currentComment.replies, newReply],
+        replies: [...currentComment?.replies, newReply],
       };
     } else {
       return {
         ...currentComment,
         replies: [
-          ...currentComment.replies.map((item) =>
+          ...currentComment?.replies?.map((item) =>
             replyRecursively(item, newReply, newId)
           ),
         ],
       };
     }
+  }
+
+  function handleDelete(deleteId) {
+    console.log(deleteId, "delete id");
+    let filterDelete = deleteRecursively(comment, deleteId);
+    setComment(filterDelete);
+  }
+  function deleteRecursively(currentComment, deleteId) {
+    if (currentComment.id === deleteId) {
+      return null;
+    }
+
+    let filteredReply = currentComment.replies.map((item) =>
+      deleteRecursively(item, deleteId).filter((item) => item !== null)
+    );
+    return {
+      ...currentComment,
+      replies: filteredReply,
+    };
   }
   console.log(comment, "comment");
   return (
@@ -67,6 +85,7 @@ function CommentIndex() {
           comment={comment}
           handleReply={handleReply}
           key={comment.id}
+          handleDelete={handleDelete}
         />
       )}
     </>
