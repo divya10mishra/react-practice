@@ -67,15 +67,14 @@ function CommentIndex() {
   function deleteRecursively(currentComment, deleteId) {
     if (currentComment.id === deleteId) {
       return null;
+    } else {
+      return {
+        ...currentComment,
+        replies: currentComment.replies
+          .map((item) => deleteRecursively(item, deleteId))
+          .filter((item) => item != null),
+      };
     }
-
-    let filteredReply = currentComment.replies.map((item) =>
-      deleteRecursively(item, deleteId).filter((item) => item !== null)
-    );
-    return {
-      ...currentComment,
-      replies: filteredReply,
-    };
   }
   console.log(comment, "comment");
   return (
