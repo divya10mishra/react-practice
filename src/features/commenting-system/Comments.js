@@ -30,7 +30,7 @@ function Comments({ comment, handleReply, handleDelete }) {
           </div>
           <div style={{ border: "1px solid black", width: "10%" }}>
             {flag && (
-              <div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   placeholder="comment"
                   type="text"
