@@ -21,16 +21,21 @@ function Comments({ comment, handleReply, handleDelete }) {
   const deleteComment = (id) => {
     handleDelete(id);
   };
+
   return (
     <>
       {comment && (
         <div key={comment.id} style={{ margin: "3%" }}>
-          <div style={{ border: "1px solid black", width: "10%" }}>
-            {comment.comment}
-          </div>
-          <div style={{ border: "1px solid black", width: "10%" }}>
+          <div style={{ width: "10%" }}>{comment.comment}</div>
+          <div style={{ width: "10%" }}>
             {flag && (
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  border: "1px solid black",
+                }}
+              >
                 <input
                   placeholder="comment"
                   type="text"
@@ -42,7 +47,9 @@ function Comments({ comment, handleReply, handleDelete }) {
             )}
           </div>
           <button onClick={() => setFlag(true)}>Reply</button>
+
           <button onClick={() => deleteComment(comment.id)}>Delete</button>
+
           {comment?.replies?.map((item) => (
             <Comments
               comment={item}
