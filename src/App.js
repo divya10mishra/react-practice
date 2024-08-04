@@ -3,6 +3,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import Header from "./features/Header/Header";
 import Registration from "./features/RegistrationForm/Registration.tsx";
 import Login from "./features/LoginForm/Form.tsx";
+import FileExplorer from "./features/file-explorer/fileIndex.tsx";
 
 function App() {
   return (
@@ -26,6 +27,11 @@ export const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        errorElement: <>Error fallback page</>,
+      },
+      {
+        path: "/file-explorer",
+        element: <FileExplorer />,
         errorElement: <>Error fallback page</>,
       },
     ],
