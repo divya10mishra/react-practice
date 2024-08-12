@@ -18,26 +18,30 @@ type dataStructure = {
 };
 
 function FileIndex() {
-  let ds: dataStructure = {
+  // let ds: dataStructure = {
+  //   id: "1",
+  //   folder: {
+  //     id: "3",
+  //     folderName: "hello",
+  //     file: {
+  //       id: "2",
+  //       fileName: "hi",
+  //     },
+  //     folder: {
+  //       id: "5",
+  //       folderName: "divya",
+  //       folder: {
+  //         id: "4",
+  //         folderName: "sakhi",
+  //       },
+  //     },
+  //   },
+  // };
+  const [explorerData, setExplorerData] = useState<dataStructure>({
     id: "1",
-    folder: {
-      id: "3",
-      folderName: "hello",
-      file: {
-        id: "2",
-        fileName: "hi",
-      },
-      folder: {
-        id: "5",
-        folderName: "divya",
-        folder: {
-          id: "4",
-          folderName: "sakhi",
-        },
-      },
-    },
-  };
-  const [explorerData, setExplorerData] = useState(ds);
+    folder: { id: "2", folderName: "" },
+    file: { id: "3", fileName: "" },
+  });
   return (
     <>
       <FileChild

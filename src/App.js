@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import Header from "./features/Header/Header";
 import Registration from "./features/RegistrationForm/Registration.tsx";
 import Login from "./features/LoginForm/Form.tsx";
-import FileExplorer from "./features/file-explorer/fileIndex.tsx";
+import FileExplorer from "./features/file-explorer/planned-file--explorer/FileParent.tsx";
 
 function App() {
   return (
