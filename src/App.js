@@ -4,6 +4,7 @@ import Header from "./features/Header/Header";
 import Registration from "./features/RegistrationForm/Registration.tsx";
 import Login from "./features/LoginForm/Form.tsx";
 import FileExplorer from "./features/file-explorer/planned-file--explorer/FileParent.tsx";
+import Pagination from "./features/Pagination/Page.tsx";
 
 function App() {
   return (
@@ -32,6 +33,11 @@ export const appRouter = createBrowserRouter([
       {
         path: "/file-explorer",
         element: <FileExplorer />,
+        errorElement: <>Error fallback page</>,
+      },
+      {
+        path: "/pagination-typ",
+        element: <Pagination />,
         errorElement: <>Error fallback page</>,
       },
     ],
