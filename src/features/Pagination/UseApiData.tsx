@@ -10,19 +10,21 @@ type product = itemDetails[];
 
 const UseApiData = () => {
   const [apiData, setApiData] = useState<product>([]);
+  const [pageLimit, setPageLimit] = useState<number>(10);
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetched = await fetch("https://dummyjson.com/products?limit=100");
+      const fetched = await fetch(
+        `https://dummyjson.com/products?limit=${pageLimit}`
+      );
       const result = await fetched.json();
-      console.log(result, "result");
       setApiData(result.products);
     };
 
     fetchData();
-  }, []);
+  }, [pageLimit]);
 
-  return { apiData };
+  return { apiData, pageLimit, setPageLimit };
 };
 
 export default UseApiData;

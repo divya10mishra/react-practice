@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import UseApiData from "./UseApiData";
-
-interface itemDetails {
-  id: number;
-  title: string;
-  images: string;
-}
+import useApiData from "./useApiData";
 
 const Page = () => {
   const [page, setPage] = useState<number>(1);
-  const { apiData } = UseApiData();
+  const { apiData, setPageLimit } = useApiData();
+
+  useEffect(() => {
+    setPageLimit(100);
+  }, []);
 
   return (
     <>
       {apiData.slice(page * 10 - 10, page * 10).map((item) => (
         <div>
           {item.id}
-          <img src={item.images} height={150} width={150} />
-          <div>{item.title}</div>
+          <img src={item.images} height={100} width={100} />
+          {item.title}
         </div>
       ))}
 
