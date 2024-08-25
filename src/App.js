@@ -6,6 +6,7 @@ import Login from "./features/LoginForm/Form.tsx";
 import FileExplorer from "./features/file-explorer/planned-file--explorer/FileParent.tsx";
 import Pagination from "./features/Pagination/Page.tsx";
 import InfiniteScroll from "./features/Infinite Scroll/InfiniteScroll.tsx";
+import CommentSystem from './features/Nested-comments/CommentSystem.tsx'
 
 function App() {
   return (
@@ -44,6 +45,11 @@ export const appRouter = createBrowserRouter([
       {
         path: "/infinite-scroll",
         element: <InfiniteScroll />,
+        errorElement: <>Fallback</>,
+      },
+      {
+        path: "/commenting-system",
+        element: <CommentSystem />,
         errorElement: <>Fallback</>,
       },
     ],
