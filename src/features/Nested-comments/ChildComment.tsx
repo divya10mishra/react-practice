@@ -7,8 +7,8 @@ interface Comment {
 }
 type props = {
   commentData: Comment;
-  handleReply: any;
-  handleDelete: any;
+  handleReply: (newReply: Comment, currentId: number) => void;
+  handleDelete: (currentId: number) => void;
 };
 
 function ChildComment({ handleReply, handleDelete, commentData }: props) {
